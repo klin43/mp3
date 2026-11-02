@@ -266,7 +266,7 @@ module.exports = function (router) {
                 }
             }
             await Task.findByIdAndDelete(req.params.id);
-            return res.status(200).json({message: 'Success: tasks/:id DELETE', data: {}});
+            return res.status(204).send();
         } catch (err) {
             return res.status(500).json({message: 'Server error', data: {}});
         }

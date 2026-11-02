@@ -286,9 +286,11 @@ module.exports = function (router) {
             }
             // Delete specified user 
             // Source: https://www.geeksforgeeks.org/mongodb/mongoose-findbyidanddelete-function/
+            // https://github.com/expressjs/express/issues/2504
+            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/204
             await User.findByIdAndDelete(req.params.id);
             
-            return res.status(200).json({message: 'Success: users/:id DELETE', data: {}});
+            return res.status(204).send();
         } catch (err) {
             return res.status(500).json({message: 'Server error', data: {}});
         }
